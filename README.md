@@ -2,6 +2,8 @@
 
 Web app for client-side pseudonymization of medical data and easy uploading to XNAT
 
+![Screenshot](assets/images/uploader.png)
+
 
 ## Up and running
 
