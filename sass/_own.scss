@@ -1,0 +1,140 @@
+@mixin animation($animate...) {
+   $max: length($animate);
+   $animations: '';
+
+   @for $i from 1 through $max {
+      $animations: #{$animations + nth($animate, $i)};
+
+      @if $i < $max {
+         $animations: #{$animations + ", "};
+      }
+   }
+   -webkit-animation: $animations;
+   -moz-animation:    $animations;
+   -o-animation:      $animations;
+   animation:         $animations;
+}
+
+@mixin keyframes($animation-name) {
+   @-webkit-keyframes #{$animation-name} {
+      @content;
+   }
+   @-moz-keyframes #{$animation-name} {
+      @content;
+   }
+   @-o-keyframes #{$animation-name} {
+      @content;
+   }
+   @keyframes #{$animation-name} {
+      @content;
+   }
+}
+
+@include keyframes(highlight) {
+   25%, 75% { background-color: $state-success-border; }
+}
+
+/* Space out content a bit */
+.container {
+   padding-top: 20px;
+   padding-bottom: 20px;
+}
+
+.row { margin-bottom: 10px; }
+
+body.ready .container { display: block; }
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.footer {
+   padding-right: 15px;
+   padding-left: 15px;
+}
+
+.footer {
+   text-align: center;
+}
+
+/* Custom page header */
+.header {
+   margin-bottom: 30px;
+   border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+   margin-top: 0;
+   margin-bottom: 0;
+   padding-bottom: 19px;
+   line-height: 40px;
+}
+
+
+progress,
+.progress {
+   display: block;
+   width: 100%;
+   height: 30px;
+   margin: 10px 0;
+
+   & > .progress-bar { line-height: 30px; }
+}
+progress[value="0"] { display: none; }
+
+
+
+.file-reader {
+   @include transition-property(margin-left);
+   @include transition-duration(.5s);
+
+   &.col-md-offset-4 {
+     @include transition-duration(0s);
+   }
+
+   label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+}
+
+.form-group:last-child {
+   margin-bottom: 0;
+}
+
+.overlay {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 10;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba($gray-light, .6);
+
+   .spinner {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+      text-align: center;
+      border: 10px solid $gray-lighter;
+      border-radius: 20px;
+      background-color: $gray-light;
+      box-shadow: 0 0 20px $gray;
+   }
+}
+
+/* Custom page footer */
+.panel-footer > .row:last-child {
+   margin-bottom: 0;
+}
+
+/* Customize container */
+@media (min-width: 960px) {
+   .container {
+      max-width: 960px;
+   }
+}

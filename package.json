@@ -1,0 +1,29 @@
+{
+  "name": "XnatUploader",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Maximilian Beier",
+  "description": "Uploads Image Data to XNAT",
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "dependencies": {
+    "backbone": "1.2.1",
+    "jquery": "2.1.4",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "babelify": "latest",
+    "browserify": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-compass": "^2.0.3",
+    "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.1.0",
+    "gulp-uglify": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.2.1"
+  }
+}

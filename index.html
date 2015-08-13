@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Upload EDFs">
+   <meta name="author" content="HTW Berlin">
+   <title>Somnonetz Uploader</title>
+   <link rel="stylesheet" href="assets/css/styles.css">
+   <link rel="shortcut icon" href="assets/icons/favicon.png">
+</head>
+
+<body>
+   <div class="container main-container">
+      <div class="header">
+         <h3 class="text-muted">
+            <img class="pull-right" src="assets/images/somnonetz.png" height="29" width="235" alt="Somnonetz"> Somnonetz Uploader
+         </h3>
+      </div>
+      <div class="row main-row">
+
+         <div class="file-reader col-md-4 col-md-offset-4">
+            <div class="panel panel-info">
+               <div class="panel-heading">
+                  <h3 class="panel-title">File</h3>
+               </div>
+               <form>
+                  <div class="droparea">
+                     <span class="label">Drop Files or
+                        <br> Folders Here</span>
+                     <button class="btn btn-success btn-block"> <i class="fa fa-plus"></i> Browse</button>
+                     <input type="file" name="files[]" webkitdirectory directory multiple>
+                  </div>
+               </form>
+            </div>
+         </div>
+
+         <div class="col-md-8 main-column hidden">
+
+            <div class="panel panel-info files-to-upload">
+
+               <div class="panel-heading">
+                  <h3 class="panel-title">Files to Upload</h3>
+               </div>
+
+               <div class="panel-body">
+                  <div class="pseudonym-list form-horizontal">
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Pseudonym</label>
+                        <div class="col-sm-6">
+                           <input type="text" class="form-control" name="pseudonym" placeholder="Pseudonym" maxlength="80">
+                        </div>
+                        <div class="col-sm-4">
+                           <button class="btn-pseudo-history btn btn-link" type="button">Show list of pseudonyms</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="file-manager"></div>
+
+               <div class="panel-footer">
+                  <button type="button" class="btn btn-success btn-block btn-use-files">Use Files and Proceed to Upload</button>
+               </div>
+            </div>
+
+            <div class="uploader panel panel-info hidden">
+               <div class="panel-heading">
+                  <h3 class="panel-title">Upload to XNAT</h3>
+               </div>
+               <form role="form">
+                  <div class="panel-body">
+
+                     <div class="row">
+                        <div class="form-group col-md-12">
+                           <label>User</label>
+                           <select class="form-control" name="user">
+                              <!-- augmented dynamically -->
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="alert alert-warning">
+                        <button class="btn-show-settings btn btn-link pull-right" type="button">Change them.</button>
+                        <p class="lead">The upload will happen with default settings.</p>
+                     </div>
+
+                     <div class="upload-details hidden">
+                        <div class="form-group uploader-login">
+                           <label>Login</label>
+                           <div class="row">
+                              <div class="col-sm-5">
+                                 <input type="text" class="form-control" placeholder="Username" name="username">
+                              </div>
+                              <div class="col-sm-5">
+                                 <input type="password" class="form-control" placeholder="Password" name="password">
+                              </div>
+                              <div class="col-sm-2">
+                                 <button type="button" class="btn btn-default btn-block btn-login">Login</button>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group uploader-projects">
+                           <label>Projects</label>
+                           <select class="form-control">
+                              <!-- dynamically appended -->
+                           </select>
+                        </div>
+
+                        <div class="form-group uploader-session-scan">
+                           <div class="row">
+                              <div class="col-sm-4">
+                                 <label>File</label>
+                                 <input type="text" class="form-control" placeholder="File name" name="file">
+                              </div>
+                              <div class="col-sm-4">
+                                 <label>Session</label>
+                                 <input type="text" class="form-control" placeholder="Session name" name="session">
+                              </div>
+                              <div class="col-sm-4">
+                                 <label>Scan</label>
+                                 <input type="text" class="form-control" placeholder="Scan name" name="scan">
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group col-md-12 uploader-check">
+                           <div class="row">
+                              <button type="button" class="btn btn-primary btn-block btn-check">Check what will happen</button>
+                              <div class="alert alert-info uploader-check-output hidden"></div>
+                              <hr>
+                           </div>
+                        </div>
+
+                     </div>
+
+                     <div class="row">
+                        <div class="form-group col-md-12">
+                           <label>Primary Diagnosis</label>
+                           <input type="text" class="form-control" value="unknown" name="diagnose">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="form-group col-md-12">
+                           <label>Investigator</label>
+                           <input type="text" class="form-control" value="unknown" name="investigator">
+                        </div>
+                     </div>
+
+                  </div>
+                  <div class="panel-footer">
+                     <button type="button" class="btn btn-success btn-block btn-upload" disabled>Upload</button>
+                  </div>
+               </form>
+            </div>
+
+         </div>
+
+         <div class="overlay hidden">
+            <div class="alert alert-success">
+               <p class="lead">File successfully uploaded!</p>
+               <br>
+               <button class="btn btn-success btn-block" type="button" onclick="location.reload()">Upload another file</button>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="pseudonym-row hidden">
+         <div class="row hidden-print">
+            <div class="col-sm-2 col-sm-offset-8">
+               <button class="btn btn-default btn-block btn-close"> <i class="fa fa-times"></i> Close</button>
+            </div>
+            <div class="col-sm-2">
+               <button class="btn btn-primary btn-block btn-print"> <i class="fa fa-print"></i> Print</button>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-12">
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th>Name</th>
+                        <th>Pseudonym</th>
+                     </tr>
+                  </thead>
+                  <tbody class="pseudonym-table">
+                     <!-- automatically augmented -->
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <footer class="footer">
+         <!-- <p>HTW Berlin 2014</p> -->
+      </footer>
+   </div>
+   <!-- /container -->
+
+   <script src="assets/js/libs.js"></script>
+   <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

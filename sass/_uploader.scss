@@ -1,0 +1,26 @@
+/*----------------------------
+    The file upload form
+-----------------------------*/
+
+.droparea {
+    padding: 52px 20px 20px;
+    background-color: $panel-success-heading-bg;
+    color: $panel-success-text;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+
+    // &:-moz-drag-over {
+    //     background-color: $panel-success-border;
+    // }
+
+    input {
+        display: none;
+    }
+
+    button {
+      margin-top: 48px;
+    }
+}

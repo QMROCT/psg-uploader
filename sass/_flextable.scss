@@ -1,0 +1,138 @@
+/*
+ * CONTENTS
+ *
+ * Flextable
+ * Flextable Styling
+ * Inputs
+ */
+
+// Map Variables to Bootstrap
+$text: $state-info-text;
+$background: $state-info-bg;
+$boder: $state-info-border;
+
+/*
+ * Flextable
+ */
+
+.flexcol,
+.flexrow,
+.flexitem {
+   flex-grow: 1;
+   flex-basis: 0;
+}
+
+.flexcol {
+   flex-flow: column nowrap;
+}
+
+.flexrow,
+.flexitem {
+   display: flex;
+   flex-flow: row nowrap;
+}
+
+.flexitem {
+   justify-content: center;
+   align-items: center;
+
+   &-half { flex: .5; }
+   &-double { flex: 2; }
+   &-triple { flex: 3; }
+
+   &-right { text-align: right; }
+}
+
+.flexitem > * {
+   flex: 1;
+   display: inline-block;
+   box-sizing: border-box;
+   margin: auto;
+}
+
+
+/*
+ * Flextable Styling
+ */
+
+.flextable {
+   background-color: white;
+   border-top: 1px solid $boder;
+}
+
+.flexheader {
+   background-color: $background;
+   text-align: center;
+   color: $text;
+   line-height: 2;
+   font-weight: 700;
+}
+
+.flexrow {
+   &:last-child > .flexitem { border-bottom: 0; }
+   /*     done */ &[data-state="-1"] {}
+   /* inactive */ &[data-state="0"] > .flexitem > * { opacity: 0.3; }
+   /*   active */ &[data-state="1"] {}
+   /*  current */ &[data-state="2"] { background-color: $panel-success-heading-bg; }
+}
+
+.flexitem {
+   overflow: hidden;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   border-right: 1px solid $boder;
+   border-bottom: 1px solid $boder;
+   text-overflow: ellipsis;
+   word-break: break-all;
+
+   &:last-child { border-right: 0; }
+}
+
+
+
+/*
+ * Inputs
+ */
+
+.flextable .flexitem {
+
+   input,
+   select,
+   textarea {
+      border: 0;
+      background-color: transparent;
+      // background-image: linear-gradient(top, white, white); // only for iOS
+   }
+
+   span,
+   select,
+   textarea,
+   input[type='text'],
+   input[type='date'] {
+      margin: 0;
+      padding: 5px;
+      border-radius: 0;
+      /*-webkit-appearance: none;*/
+   }
+
+   input[type='date'],
+   input[type='radio'],
+   input[type='checkbox'] {
+      flex: initial;
+   }
+
+   input[type='radio'] {
+      background-image: none;
+   }
+
+   input[type='checkbox'] {
+      margin: 0;
+   }
+
+   textarea {
+      height: 42px;
+      line-height: 1.2;
+   }
+
+}
